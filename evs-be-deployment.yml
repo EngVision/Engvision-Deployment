@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evs-be-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: evs-be-deployment
+  template:
+    metadata:
+      labels:
+        app: evs-be-deployment
+    spec:
+      containers:
+        - name: evs-be-deployment
+          image: ghcr.io/engvision/project-engvision:backend
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: evs-be-secret
+      imagePullSecrets:
+        - name: k8s-ghcr

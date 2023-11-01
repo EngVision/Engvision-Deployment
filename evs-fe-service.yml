@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: evs-fe-service
+spec:
+  selector:
+    app: evs-fe-deployment
+  ports:
+    - name: evs-fe-service
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer

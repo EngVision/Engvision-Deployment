@@ -12,6 +12,14 @@ spec:
       labels:
         app: evs-fe-deployment
     spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: evs-fe-deployment
+
       containers:
         - name: evs-fe-deployment
           image: ghcr.io/engvision/project-engvision:frontend

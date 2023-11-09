@@ -20,7 +20,7 @@ resource "digitalocean_kubernetes_cluster" "engvision" {
 
   node_pool {
     name       = "engvision-worker-pool"
-    size       = "s-1vcpu-2gb"
+    size       = "s-2vcpu-4gb"
     auto_scale = true
     min_nodes  = 1
     max_nodes  = 3

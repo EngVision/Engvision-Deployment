@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: evs-ingress
+  name: evs-ingress-monitoring
+  namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -9,28 +10,28 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - "api.engvision.edu.vn"
-        - "engvision.edu.vn"
+        - "prometheus.engvision.edu.vn"
+        - "grafana.engvision.edu.vn"
       secretName: evs-tls
   rules:
-    - host: "api.engvision.edu.vn"
+    - host: "prometheus.engvision.edu.vn"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: evs-be-service
+                name: prometheus-server
                 port:
-                  number: 5000
+                  number: 80
 
-    - host: "engvision.edu.vn"
+    - host: "grafana.engvision.edu.vn"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: evs-fe-service
+                name: grafana
                 port:
-                  number: 3000
+                  number: 80

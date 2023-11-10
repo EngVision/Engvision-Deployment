@@ -58,6 +58,18 @@ kubectl create secret docker-registry k8s-ghcr \
 kubectl create secret generic evs-be-secret --from-env-file=.env
 ```
 
+### Credentials
+
+- Argocd:
+
+  - Username: admin
+  - Password: `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+
+- Grafana:
+  - Username: admin
+  - Password: `kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo`
+
 ### Useful links
 
 - [Ansible - A worker was found in dead state](https://stackoverflow.com/a/69990888)
+- [Grafana Monitor Template](https://grafana.com/grafana/dashboards/15759-kubernetes-views-nodes/)

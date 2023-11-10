@@ -11,7 +11,6 @@ spec:
     - hosts:
         - "api.engvision.edu.vn"
         - "engvision.edu.vn"
-      secretName: evs-tls
   rules:
     - host: "api.engvision.edu.vn"
       http:

@@ -12,7 +12,6 @@ spec:
     - hosts:
         - "prometheus.engvision.edu.vn"
         - "grafana.engvision.edu.vn"
-      secretName: evs-tls
   rules:
     - host: "prometheus.engvision.edu.vn"
       http:

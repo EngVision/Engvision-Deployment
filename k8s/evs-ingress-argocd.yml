@@ -12,7 +12,6 @@ spec:
   tls:
     - hosts:
         - argocd.engvision.edu.vn
-      secretName: evs-tls
   rules:
     - http:
         paths:

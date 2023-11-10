@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: evs-be-deployment
-          image: ghcr.io/engvision/project-engvision:backend
+          image: ghcr.io/engvision/project-engvision:backend-169
           ports:
             - containerPort: 5000
           envFrom:

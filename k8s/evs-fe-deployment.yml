@@ -28,6 +28,14 @@ spec:
       imagePullSecrets:
         - name: k8s-ghcr
 
+      resource:
+        requests:
+          memory: "512Mi"
+          cpu: "250m"
+        limits:
+          memory: "1Gi"
+          cpu: "500m"
+
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler

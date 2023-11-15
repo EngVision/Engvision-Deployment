@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: evs-fe-master-deployment
-          image: ghcr.io/engvision/project-engvision:frontend-develop-193
+          image: ghcr.io/engvision/project-engvision:frontend-master-194
           ports:
             - containerPort: 3000
       imagePullSecrets:
@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: evs-fe-develop-deployment
-          image: ghcr.io/engvision/project-engvision:frontend-develop-193
+          image: ghcr.io/engvision/project-engvision:frontend-master-194
           ports:
             - containerPort: 3005
       imagePullSecrets:

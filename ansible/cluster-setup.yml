@@ -64,3 +64,20 @@
         chart_ref: argo/argo-cd
         release_namespace: argocd
         create_namespace: true
+
+    - name: Add Metrics Helm repository
+      kubernetes.core.helm_repository:
+        repo_name: metrics-server
+        repo_url: https://kubernetes-sigs.github.io/metrics-server/
+        state: present
+
+    - name: Install Metrics Server for HPA
+      community.kubernetes.helm:
+        kubeconfig: "{{ kubeconfig }}"
+        name: metrics-server
+        chart_ref: metrics-server/metrics-server
+        release_namespace: kube-system
+        create_namespace: true
+        values:
+          apiService:
+            create: true

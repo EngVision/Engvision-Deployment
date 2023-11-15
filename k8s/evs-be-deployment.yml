@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: evs-be-deployment
+  name: evs-be-master-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: evs-be-deployment
+      app: evs-be-master-deployment
   template:
     metadata:
       labels:
-        app: evs-be-deployment
+        app: evs-be-master-deployment
     spec:
       topologySpreadConstraints:
         - maxSkew: 1
@@ -18,11 +18,11 @@ spec:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app: evs-be-deployment
+              app: evs-be-master-deployment
 
       containers:
-        - name: evs-be-deployment
-          image: ghcr.io/engvision/project-engvision:backend-191
+        - name: evs-be-master-deployment
+          image: ghcr.io/engvision/project-engvision:backend-master
           ports:
             - containerPort: 5000
           envFrom:
@@ -31,6 +31,31 @@ spec:
       imagePullSecrets:
         - name: k8s-ghcr
 
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: evs-be-develop-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evs-be-develop-deployment
+  template:
+    metadata:
+      labels:
+        app: evs-be-develop-deployment
+    spec:
+      containers:
+        - name: evs-be-develop-deployment
+          image: ghcr.io/engvision/project-engvision:backend-develop
+          ports:
+            - containerPort: 5005
+          envFrom:
+            - secretRef:
+                name: evs-be-develop-secret
+      imagePullSecrets:
+        - name: k8s-ghcr
 #       resource:
 #         requests:
 #           memory: "512Mi"
@@ -43,12 +68,12 @@ spec:
 # apiVersion: autoscaling/v2
 # kind: HorizontalPodAutoscaler
 # metadata:
-#   name: evs-be-deployment
+#   name: evs-be-master-deployment
 # spec:
 #   scaleTargetRef:
 #     apiVersion: apps/v1
 #     kind: Deployment
-#     name: evs-be-deployment
+#     name: evs-be-master-deployment
 #   minReplicas: 1
 #   maxReplicas: 3
 #   metrics:

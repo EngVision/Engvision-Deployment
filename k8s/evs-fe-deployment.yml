@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: evs-fe-deployment
+  name: evs-fe-master-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: evs-fe-deployment
+      app: evs-fe-master-deployment
   template:
     metadata:
       labels:
-        app: evs-fe-deployment
+        app: evs-fe-master-deployment
     spec:
       topologySpreadConstraints:
         - maxSkew: 1
@@ -18,16 +18,38 @@ spec:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app: evs-fe-deployment
+              app: evs-fe-master-deployment
 
       containers:
-        - name: evs-fe-deployment
+        - name: evs-fe-master-deployment
           image: ghcr.io/engvision/project-engvision:frontend-191
           ports:
             - containerPort: 3000
       imagePullSecrets:
         - name: k8s-ghcr
 
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: evs-fe-develop-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evs-fe-develop-deployment
+  template:
+    metadata:
+      labels:
+        app: evs-fe-develop-deployment
+    spec:
+      containers:
+        - name: evs-fe-develop-deployment
+          image: ghcr.io/engvision/project-engvision:frontend-develop
+          ports:
+            - containerPort: 3005
+      imagePullSecrets:
+        - name: k8s-ghcr
 #       resource:
 #         requests:
 #           memory: "512Mi"
@@ -40,12 +62,12 @@ spec:
 # apiVersion: autoscaling/v2
 # kind: HorizontalPodAutoscaler
 # metadata:
-#   name: evs-fe-deployment
+#   name: evs-fe-master-deployment
 # spec:
 #   scaleTargetRef:
 #     apiVersion: apps/v1
 #     kind: Deployment
-#     name: evs-fe-deployment
+#     name: evs-fe-master-deployment
 #   minReplicas: 1
 #   maxReplicas: 3
 #   metrics:

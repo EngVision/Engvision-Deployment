@@ -1,12 +1,26 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: evs-fe-service
+  name: evs-fe-master-service
 spec:
   selector:
-    app: evs-fe-deployment
+    app: evs-fe-master-deployment
   ports:
-    - name: evs-fe-service
+    - name: evs-fe-master-service
       protocol: TCP
       port: 3000
       targetPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: evs-fe-develop-service
+spec:
+  selector:
+    app: evs-fe-develop-deployment
+  ports:
+    - name: evs-fe-develop-service
+      protocol: TCP
+      port: 3005
+      targetPort: 3005

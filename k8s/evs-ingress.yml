@@ -12,7 +12,7 @@ spec:
         - "api.engvision.edu.vn"
         - "engvision.edu.vn"
         - "stg.engvision.edu.vn"
-        - "api.stg.engvision.edu.vn"
+        - "api-stg.engvision.edu.vn"
   rules:
     - host: "api.engvision.edu.vn"
       http:
@@ -47,7 +47,7 @@ spec:
                 port:
                   number: 3000
 
-    - host: "api.stg.engvision.edu.vn"
+    - host: "api-stg.engvision.edu.vn"
       http:
         paths:
           - path: /

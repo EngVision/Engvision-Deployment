@@ -45,7 +45,7 @@ spec:
               service:
                 name: evs-fe-develop-service
                 port:
-                  number: 3005
+                  number: 3000
 
     - host: "api.stg.engvision.edu.vn"
       http:
@@ -56,4 +56,4 @@ spec:
               service:
                 name: evs-be-develop-service
                 port:
-                  number: 5005
+                  number: 5000

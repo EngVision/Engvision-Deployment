@@ -50,7 +50,7 @@ spec:
         - name: evs-be-develop-deployment
           image: ghcr.io/engvision/project-engvision:backend-develop-200
           ports:
-            - containerPort: 5005
+            - containerPort: 5000
           envFrom:
             - secretRef:
                 name: evs-be-develop-secret

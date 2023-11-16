@@ -47,7 +47,7 @@ spec:
         - name: evs-fe-develop-deployment
           image: ghcr.io/engvision/project-engvision:frontend-develop-200
           ports:
-            - containerPort: 3005
+            - containerPort: 3000
       imagePullSecrets:
         - name: k8s-ghcr
 #       resource:

@@ -22,5 +22,5 @@ spec:
   ports:
     - name: evs-be-develop-service
       protocol: TCP
-      port: 5005
-      targetPort: 5005
+      port: 5000
+      targetPort: 5000

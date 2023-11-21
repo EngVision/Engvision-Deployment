@@ -13,6 +13,7 @@ spec:
         - "engvision.edu.vn"
         - "stg.engvision.edu.vn"
         - "api-stg.engvision.edu.vn"
+        - "www.engvision.edu.vn"
   rules:
     - host: "api.engvision.edu.vn"
       http:
@@ -26,6 +27,17 @@ spec:
                   number: 5000
 
     - host: "engvision.edu.vn"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: evs-fe-master-service
+                port:
+                  number: 3000
+
+    - host: "www.engvision.edu.vn"
       http:
         paths:
           - path: /

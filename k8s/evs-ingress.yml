@@ -14,6 +14,7 @@ spec:
         - "stg.engvision.edu.vn"
         - "api-stg.engvision.edu.vn"
         - "www.engvision.edu.vn"
+        - "whisper.engvision.edu.vn"
   rules:
     - host: "api.engvision.edu.vn"
       http:
@@ -69,3 +70,14 @@ spec:
                 name: evs-be-develop-service
                 port:
                   number: 5000
+
+    - host: "whisper.engvision.edu.vn"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: evs-whisper-deployment
+                port:
+                  number: 8000

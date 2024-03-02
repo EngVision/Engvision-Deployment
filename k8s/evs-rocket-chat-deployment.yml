@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: evs-rocket-chat-prod-deployment
-          image: ghcr.io/engvision/chat-service-prod:3
+          image: ghcr.io/engvision/chat-service-prod:5
           ports:
             - containerPort: 3000
       imagePullSecrets:
@@ -53,7 +53,7 @@ spec:
 
       containers:
         - name: evs-rocket-chat-stg-deployment
-          image: ghcr.io/engvision/chat-service-stg:3
+          image: ghcr.io/engvision/chat-service-stg:5
           ports:
             - containerPort: 3000
       imagePullSecrets:

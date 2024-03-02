@@ -16,13 +16,13 @@ provider "digitalocean" {
 resource "digitalocean_kubernetes_cluster" "engvision" {
   name    = "engvision-cluster"
   region  = "sgp1"
-  version = "1.28.2-do.0"
+  version = "1.29.1-do.0"
 
   node_pool {
     name       = "engvision-worker-pool"
-    size       = "s-2vcpu-4gb"
+    size       = "s-4vcpu-8gb"
     auto_scale = true
-    min_nodes  = 1
+    min_nodes  = 2
     max_nodes  = 3
   }
 }

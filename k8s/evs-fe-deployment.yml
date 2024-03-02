@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: evs-fe-develop-deployment
-          image: ghcr.io/engvision/project-engvision:frontend-develop-43
+          image: ghcr.io/engvision/project-engvision:frontend-develop-44
           ports:
             - containerPort: 3000
       imagePullSecrets:

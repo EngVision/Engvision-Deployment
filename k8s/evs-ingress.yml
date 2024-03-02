@@ -18,6 +18,7 @@ spec:
         - "api-stg.engvision.edu.vn"
         - "www.engvision.edu.vn"
         - "whisper.engvision.edu.vn"
+        - "rocket-chat.engvision.edu.vn"
   rules:
     - host: "api.engvision.edu.vn"
       http:
@@ -84,3 +85,14 @@ spec:
                 name: evs-whisper-deployment
                 port:
                   number: 8000
+
+    - host: "rocket-chat.engvision.edu.vn"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: evs-rocket-chat-deployment
+                port:
+                  number: 3000

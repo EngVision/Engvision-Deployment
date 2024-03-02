@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: evs-rocket-chat-deployment
+spec:
+  selector:
+    app: evs-rocket-chat-deployment
+  ports:
+    - name: evs-rocket-chat-deployment
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

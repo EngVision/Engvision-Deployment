@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: evs-rocket-chat-deployment
+  name: evs-rocket-chat-prod-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: evs-rocket-chat-deployment
+      app: evs-rocket-chat-prod-deployment
   template:
     metadata:
       labels:
-        app: evs-rocket-chat-deployment
+        app: evs-rocket-chat-prod-deployment
     spec:
       topologySpreadConstraints:
         - maxSkew: 1
@@ -18,11 +18,42 @@ spec:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app: evs-rocket-chat-deployment
+              app: evs-rocket-chat-prod-deployment
 
       containers:
-        - name: evs-rocket-chat-deployment
-          image: ghcr.io/engvision/chat-service:3
+        - name: evs-rocket-chat-prod-deployment
+          image: ghcr.io/engvision/chat-service-prod:3
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: k8s-ghcr
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evs-rocket-chat-stg-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evs-rocket-chat-stg-deployment
+  template:
+    metadata:
+      labels:
+        app: evs-rocket-chat-stg-deployment
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: evs-rocket-chat-stg-deployment
+
+      containers:
+        - name: evs-rocket-chat-stg-deployment
+          image: ghcr.io/engvision/chat-service-stg:3
           ports:
             - containerPort: 3000
       imagePullSecrets:

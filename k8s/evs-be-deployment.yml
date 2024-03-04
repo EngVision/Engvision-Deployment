@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: evs-be-master-deployment
-          image: ghcr.io/engvision/project-engvision:backend-master-146
+          image: ghcr.io/engvision/project-engvision:backend-master-150
           ports:
             - containerPort: 5000
           envFrom:

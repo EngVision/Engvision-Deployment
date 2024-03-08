@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: evs-whisper-deployment
-          image: ghcr.io/engvision/whisper-service:1420240308T12
+          image: ghcr.io/engvision/whisper-service:15
           ports:
             - containerPort: 8000
       imagePullSecrets:
